@@ -4,30 +4,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de Moedas</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
 
   <body>
     <!-- 
       FAZER
-      div com o quadrado do fundo
-      texto do conversor
-      fazer botões de inpurt + select
-      div as duas partes da conta + imagem da troca
-      texto da taxa
-      div com grafico (adicionado, falta customizar)
+      div principal, com o quadrado do fundo OK
+      texto do conversor OK
+      fazer botões de inpurt + select OK
+      div as duas partes da conta + imagem da troca OK
+      texto da taxa OK
+      div com grafico OK
+      customização no css
     -->
 
+    <!-- CONVERSOR -->
+
+    <h3>Conversor de moedas</h3>
+
+    <div>
+      <!-- input de numero e input com select -->
+      <div>
+        <input type="number" id="number" />
+
+        <select name="coin" id="coin">
+          <option value="usd">😐 USD</option>
+          <option value="eur">😔 EUR</option>
+          <option value="real">😶 REAL</option>
+        </select>
+      </div>
+    </div>
+    <img class="imgChange" src="./src/arrows-exchange.svg" />
+    <div>
+      <!-- input de numero e input com select -->
+      <div>
+        <input type="number2" id="number2" />
+
+        <select name="coin2" id="coin2">
+          <option value="usd">😐 USD</option>
+          <option value="eur">😔 EUR</option>
+          <option value="real">😶 REAL</option>
+        </select>
+      </div>
+    </div>
+
     <!-- CHART.JS-->
+
+    <h3 class="titleTaxa">Taxa de câmbio</h3>
+
     <div class="chart">
-      <canvas id="myChart"></canvas> 
+      <canvas id="myChart"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
       const ctx = document.getElementById('myChart')
-      
+
       new Chart(ctx, {
         type: 'line',
         data: {
@@ -42,8 +76,7 @@
               areaStyle: {
                 color: '#00000',
                 opacity: 0.5
-              },
-              
+              }
             }
           ]
         },
@@ -54,8 +87,8 @@
               beginAtZero: false
             }
           },
-            plugins: {
-              tooltip: {
+          plugins: {
+            tooltip: {
               enabled: true,
               backgroundColor: '#ffffff',
               caretSize: 0,
@@ -68,8 +101,8 @@
               displayColors: false,
               xAlign: 'center',
               hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)'
-            }},
-
+            }
+          }
         }
       })
     </script>
