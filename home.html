@@ -4,8 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
-    <!-- importar o css -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
 
   <body>
@@ -19,15 +18,15 @@
     -->
 
     <!-- CHART.JS-->
-    <div>
-      <canvas id="myChart"></canvas>
+    <div class="chart">
+      <canvas id="myChart"></canvas> 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
       const ctx = document.getElementById('myChart')
-
+      
       new Chart(ctx, {
         type: 'line',
         data: {
@@ -36,21 +35,40 @@
             {
               label: '# of Votes',
               data: [5.0, 5.15, 5.2, 5.28, 5.25, 5],
-              borderWidth: 1,
+              borderWidth: 2,
+              borderColor: '#7C3AED',
               fill: true,
               areaStyle: {
                 color: '#00000',
                 opacity: 0.5
-              }
+              },
+              
             }
           ]
         },
         options: {
+          responsive: true,
           scales: {
             y: {
               beginAtZero: false
             }
-          }
+          },
+            plugins: {
+              tooltip: {
+              enabled: true,
+              backgroundColor: '#ffffff',
+              caretSize: 0,
+              titleFont: { weight: 'bold', family: 'Inter, Sans-Serif' },
+              titleAlign: 'center',
+              titleColor: '#0F172A',
+              bodyFont: { family: 'Inter, Sans-Serif' },
+              bodyColor: '#0F172A',
+              bodyAlign: 'center',
+              displayColors: false,
+              xAlign: 'center',
+              hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)'
+            }},
+
         }
       })
     </script>
