@@ -4,6 +4,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de Moedas</title>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+</script>
+<script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</script>
+
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
 
@@ -17,6 +27,8 @@
       texto da taxa OK
       div com grafico OK
       customização no css
+      fazer logica para a conversão + mudança de moeda OK
+      mudar grafico quando primeiro input mudar a moeda
     -->
 
     <!-- CONVERSOR -->
@@ -26,32 +38,47 @@
     <div>
       <!-- input de numero e input com select -->
       <div>
-        <input type="number" id="number" />
+        <input class="searchBox" type="number" min="0" />
 
-        <select name="coin" id="coin">
-          <option value="usd">😐 USD</option>
-          <option value="eur">😔 EUR</option>
-          <option value="real">😶 REAL</option>
+        <select class="from" id="coin">
+          <option value="">Escolha uma moeda</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="BRL">REAL</option>
         </select>
+
       </div>
+
     </div>
     <img class="imgChange" src="./src/arrows-exchange.svg" />
     <div>
-      <!-- input de numero e input com select -->
-      <div>
-        <input type="number2" id="number2" />
 
-        <select name="coin2" id="coin2">
-          <option value="usd">😐 USD</option>
-          <option value="eur">😔 EUR</option>
-          <option value="real">😶 REAL</option>
+      <!-- input com select -->
+      <div>
+      
+        <select class="to" id="coin2">
+          <option value="">Escolha uma moeda</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="BRL">REAL</option>
         </select>
+    
       </div>
+
+    <div id="result" >
+        <h2>Converção
+          <span class="valorConvertido">
+     </span>
+      </h2>
+    </div>
+
+    <button class="convert" type="submit" >Converter</button>
+
     </div>
 
     <!-- CHART.JS-->
 
-    <h3 class="titleTaxa">Taxa de câmbio</h3>
+    <h3 class="titleTax">Taxa de câmbio (dolar-real)</h3>
 
     <div class="chart">
       <canvas id="myChart"></canvas>
@@ -65,11 +92,11 @@
       new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: ['Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar'],
           datasets: [
             {
-              label: '# of Votes',
-              data: [5.0, 5.15, 5.2, 5.28, 5.25, 5],
+              data: [5.18, 5.06, 5.22, 5.43, 5.15, 5.2],
+              label: 'Dia 04',
               borderWidth: 2,
               borderColor: '#7C3AED',
               fill: true,
@@ -88,6 +115,9 @@
             }
           },
           plugins: {
+            legend: { 
+              display: false 
+            },
             tooltip: {
               enabled: true,
               backgroundColor: '#ffffff',
@@ -100,11 +130,12 @@
               bodyAlign: 'center',
               displayColors: false,
               xAlign: 'center',
-              hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)'
+              hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)',
             }
           }
         }
       })
     </script>
   </body>
+  <script src="./javascript.js"></script>
 </html>
