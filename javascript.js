@@ -1,8 +1,3 @@
-// import Chart from 'chart.js/auto';
-// import { Tooltip } from 'chart.js';
-
-src="https://cdn.jsdelivr.net/npm/chart.js";
-
 // incluindo api para selecionar a moeda
 const api = "https://api.exchangerate-api.com/v4/latest/USD";
   
