@@ -4,141 +4,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de Moedas</title>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
 
   <body>
-    <!-- 
-      FAZER
-      div principal, com o quadrado do fundo OK
-      texto do conversor OK
-      fazer botões de inpurt + select OK
-      div as duas partes da conta + imagem da troca OK
-      texto da taxa OK
-      div com grafico OK
-      customização no css OK
-      fazer logica para a conversão + mudança de moeda OK
-    -->
-  <main>
-    <!-- CONVERSOR -->
+    <main>
+      <!-- CONVERSOR -->
 
-    <h3>Conversor de Moedas</h3>
+      <h3>Conversor de Moedas</h3>
 
-  <div class="convertArea">
-      <!-- input de numero e input com select -->
-      <div class="firstStep">
-        <input class="searchBox" type="number" min="0"/>
+      <div class="convertArea">
+        <!-- input de numero e input com select -->
+        <div class="firstStep">
+          <input class="searchBox" type="number" min="0" placeholder="$0.00" />
 
-        <select class="from" id="coin" placeholder="Ms">
-          <option value="" disabled selected>Moeda</option>
-          <option value="USD">💵USD</option>
-          <option value="EUR">💶EUR</option>
-          <option value="BRL">💸BRL</option>
-        </select>
+          <select class="from" id="coin" placeholder="Ms">
+            <option value="" disabled selected>Moeda</option>
+            <option value="USD">💵USD</option>
+            <option value="EUR">💶EUR</option>
+            <option value="BRL">💸BRL</option>
+          </select>
+        </div>
 
+        <img class="imgChange" src="./src/arrows-exchange.svg" />
+
+        <!-- input com select -->
+        <div class="secondStep">
+          <select class="to" id="coin2">
+            <option value="" disabled selected>Moeda</option>
+            <option value="USD">💵USD</option>
+            <option value="EUR">💶EUR</option>
+            <option value="BRL">💸BRL</option>
+          </select>
+        </div>
+
+        <button class="convert" type="submit">=</button>
+
+        <div id="result">
+          <h2>
+            <span class="valorConvertido"> 💰 </span>
+          </h2>
+        </div>
       </div>
 
-    <img class="imgChange" src="./src/arrows-exchange.svg" />
+      <!-- CHART.JS-->
 
-      <!-- input com select -->
-      <div class="secondStep" >
-      
-        <select class="to" id="coin2">
-          <option value="" disabled selected>Moeda</option>
-          <option value="USD">💵USD</option>
-          <option value="EUR">💶EUR</option>
-          <option value="BRL">💸BRL</option>
-        </select>
-    
+      <h3 class="titleTax">Taxa de Câmbio</h3>
+
+      <div class="chart">
+        <canvas id="myChart" height="350" width="640px"></canvas>
       </div>
 
-    <button class="convert" type="submit" >=</button>
-    
-    <div id="result" >
-        <h2>
-          <span class="valorConvertido"> 💰
-          </span>
-        </h2>
-    </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    </div>
+      <script>
+        const ctx = document.getElementById('myChart')
+        Chart.defaults.font.family = "'Inter'"
 
-    <!-- CHART.JS-->
-
-    <h3 class="titleTax">Taxa de Câmbio</h3>
-
-    <div class="chart">
-      <canvas id="myChart" height="350" width="640px"></canvas>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-      const ctx = document.getElementById('myChart')
-      Chart.defaults.font.family = "'Inter'";
-
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar'],
-          datasets: [
-            {
-              data: [5.18, 5.06, 5.22, 5.43, 5.15, 5.2],
-              label: 'Dia 04',
-              borderWidth: 2,
-              borderColor: '#7C3AED',
-              fill: true,
-              areaStyle: {
-                color: '#00000',
-                opacity: 0.5
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar'],
+            datasets: [
+              {
+                data: [5.18, 5.06, 5.22, 5.43, 5.15, 5.2],
+                label: 'Dia 04',
+                borderWidth: 2,
+                borderColor: '#7C3AED',
+                fill: true,
+                areaStyle: {
+                  color: '#00000',
+                  opacity: 0.5
+                }
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: false
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              title: {
+                display: true,
+                text: 'USD-BRL',
+                font: { weight: 'bold' },
+                color: '#7C3AED'
+              },
+              tooltip: {
+                enabled: true,
+                backgroundColor: '#ffffff',
+                caretSize: 0,
+                titleFont: { weight: 'bold', family: 'Inter, Sans-Serif' },
+                titleAlign: 'center',
+                titleColor: '#0F172A',
+                bodyFont: { family: 'Inter, Sans-Serif' },
+                bodyColor: '#0F172A',
+                bodyAlign: 'center',
+                displayColors: false,
+                xAlign: 'center',
+                hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)'
               }
             }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: false
-            }
-          },
-          plugins: {
-            legend: { 
-              display: false 
-            },
-            title: {
-            display: true,
-            text:'USD-BRL',
-            font: { weight: 'bold'},
-            color: '#7C3AED',
-            },
-            tooltip: {
-              enabled: true,
-              backgroundColor: '#ffffff',
-              caretSize: 0,
-              titleFont: { weight: 'bold', family: 'Inter, Sans-Serif' },
-              titleAlign: 'center',
-              titleColor: '#0F172A',
-              bodyFont: { family: 'Inter, Sans-Serif' },
-              bodyColor: '#0F172A',
-              bodyAlign: 'center',
-              displayColors: false,
-              xAlign: 'center',
-              hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)',
-            }
           }
-        }
-      })
-    </script>
-</main>
+        })
+      </script>
+    </main>
   </body>
   <script src="./javascript.js"></script>
 </html>
