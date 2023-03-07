@@ -1,5 +1,7 @@
 ## Conversor de Moedas
 
+!(/src/img-conversor.png)
+
 🎯 Projeto proposto pelo desafio #BoraCodar, da Rocketseat
 
 🙋 O que consegui realizar:
