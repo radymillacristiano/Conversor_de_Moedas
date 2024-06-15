@@ -9,6 +9,9 @@
 - Gráfico 'estático' com a api Chart.js
 - Execução da conversão por meio do js
 
+💻 Tecnologias Utilizadas
+- Html, Css e JS
+
 📌 Link do projeto
 
 https://conversor-de-moedass.vercel.app/
